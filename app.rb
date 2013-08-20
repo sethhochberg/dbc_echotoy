@@ -13,8 +13,8 @@ class EchoToy < Sinatra::Base
 	end
 
 	post '/process' do
-		song = Echonest::Song.new('3ZHSHRP1BSAO1J0E7')
-    @results = song.search(:combined => params['file'][:filename], :sort => 'artist_hotttnesss-desc', :song_type => 'studio').shuffle!
+		song = Echonest::Song.new(ENV['ECHONEST_KEY'])
+    @results = song.search(:combined => params['file'][:filename], :song_type => 'studio').shuffle!
   	
 		erb :_results, :layout => false
 	end 
